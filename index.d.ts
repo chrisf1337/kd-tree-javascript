@@ -25,25 +25,27 @@
 /*~ This declaration specifies that the class constructor function
  *~ is the exported object from the file
  */
-export = { KdTree: kdTree };
+export = { kdTree };
 
 /*~ Write your module's methods and properties in this class */
 declare class kdTree<T> {
   /**
    * Creates a new tree.
    */
-  constructor(points: [T], distance: (a: T, b: T) => number, dimensions: [string]);
+  constructor(points: T[], distance: (a: T, b: T) => number, dimensions: string[]);
 
   /**
    * Finds the nearest points to the given point. Returns an array of tuples of (point, distance).
    */
-  nearest(point: T, count: number, maxDistance?: [number]): [[T, number]];
+  nearest(point: T, count: number, maxDistance?: [number]): [T, number][];
 
   insert(point: T): void;
 
   remove(point: T): void;
 
   balanceFactor(): number;
+
+  items(): T[];
 }
 
 /*~ If you want to expose types from your module as well, you can
