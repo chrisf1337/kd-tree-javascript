@@ -334,18 +334,21 @@
     };
 
     this.items = function () {
-      if (this == null) {
-        return [];
+      function helper(node) {
+        if (node == null) {
+          return [];
+        }
+        let left = [];
+        let right = [];
+        if (node.left) {
+          left = helper(node.left);
+        }
+        if (node.right) {
+          right = helper(node.right);
+        }
+        return left.concat(right).concat([node.obj]);
       }
-      let left = [];
-      let right = [];
-      if (this.left) {
-        left = this.left.items();
-      }
-      if (this.right) {
-        right = this.right.items();
-      }
-      return left + right + [this.obj];
+      return helper(this.root);
     }
   }
 
